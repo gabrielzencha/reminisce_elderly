@@ -21,6 +21,16 @@ class DatabaseService {
     });
   }
 
+  Future savingPersonalData(String age, String phone) async {
+    return await userCollection.doc(uid).set({
+      "age": age,
+      "phone": phone,
+      "groups": [],
+      "profilePic": "",
+      "uid": uid,
+    });
+  }
+
   // getting user data
   Future gettingUserData(String email) async {
     QuerySnapshot snapshot =
