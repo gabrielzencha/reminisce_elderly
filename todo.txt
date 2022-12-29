@@ -1,0 +1,5 @@
+1. Addubg furebase ti abdriud
+2. to ios
+3. to web
+4. firebase.initialized() -> android and ios
+5. firebase.initializedapp(options:) -> web

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "321958918719",
+    "project_id": "reminisce-59624",
+    "storage_bucket": "reminisce-59624.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321958918719:android:6866a91b337c735df1968a",
+        "android_client_info": {
+          "package_name": "com.example.reminisce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321958918719-bvrabn9n3uotniaoif6594eelcg0n45m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.reminisce",
+            "certificate_hash": "0562e63ad8b851c100b3f25d3f826da4e406c28d"
+          }
+        },
+        {
+          "client_id": "321958918719-87vqta4nh2r7mav8isse6b2bjuhdj7ss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDwHLnIzpUktBa7PAYKoW9jSw2R7q-hBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321958918719-87vqta4nh2r7mav8isse6b2bjuhdj7ss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
