@@ -9,6 +9,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     default:
       return MaterialPageRoute(
           builder: ((context) => const Scaffold(
-              body: ErrorScreen(error: 'This page does\'nt  exit'))));
+              body: ErrorScreen(error: 'This page doesn\'t  exit'))));
   }
 }

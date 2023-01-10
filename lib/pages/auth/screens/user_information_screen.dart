@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:reminisce/common/utils/utils.dart';
-
+import 'package:reminisce/common/widgets/custom_button.dart';
+import 'package:reminisce/service/database_service.dart';
 class UserInformationScreen extends StatefulWidget {
   UserInformationScreen({Key? key}) : super(key: key);
 
@@ -131,10 +132,22 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
                       ))
                 ],
               ),
+
+              CustomButton(
+                text: "Save Information", 
+                onPressed: () => saveUserInfo(ageController.text, phoneController.text, likesController.text, 
+                dislikesController.text, emergencyContactController.text) 
+                )
             ],
           ),
         )),
       ),
     );
+  }
+  void saveUserInfo (String age, String phone, String likes, String dislikes,
+                String emergencyContact) async {
+
+            await DatabaseService().savingPersonalData(age, phone);
+            
   }
 }
