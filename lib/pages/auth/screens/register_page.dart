@@ -1,8 +1,9 @@
-import 'package:reminisce/helper/helper_function.dart';
-import 'package:reminisce/pages/auth/screens/login_page.dart';
-import 'package:reminisce/pages/home_page.dart';
-import 'package:reminisce/service/auth_services.dart';
-import 'package:reminisce/widgets/widgets.dart';
+import 'package:Reminisce/helper/helper_function.dart';
+import 'package:Reminisce/pages/auth/screens/login_page.dart';
+import 'package:Reminisce/pages/auth/screens/user_information_screen.dart';
+import 'package:Reminisce/pages/home_page.dart';
+import 'package:Reminisce/service/auth_services.dart';
+import 'package:Reminisce/widgets/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -176,7 +177,7 @@ class _RegisterPageState extends State<RegisterPage> {
           await HelperFunctions.saveUserLoggedInStatus(true);
           await HelperFunctions.saveUserEmailSF(email);
           await HelperFunctions.saveUserNameSF(fullName);
-          nextScreenReplace(context, const HomePage());
+          nextScreenReplace(context,  UserInformationScreen());
         } else {
           showSnackbar(context, Colors.red, value);
           setState(() {

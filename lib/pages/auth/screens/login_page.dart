@@ -1,9 +1,11 @@
-import 'package:reminisce/helper/helper_function.dart';
-import 'package:reminisce/pages/auth/screens/register_page.dart';
-import 'package:reminisce/pages/home_page.dart';
-import 'package:reminisce/service/auth_services.dart';
-import 'package:reminisce/service/database_service.dart';
-import 'package:reminisce/widgets/widgets.dart';
+import 'package:Reminisce/helper/helper_function.dart';
+import 'package:Reminisce/pages/Dashboard/DashboardView.dart';
+import 'package:Reminisce/pages/auth/screens/register_page.dart';
+import 'package:Reminisce/pages/auth/screens/user_information_screen.dart';
+import 'package:Reminisce/pages/home_page.dart';
+import 'package:Reminisce/service/auth_services.dart';
+import 'package:Reminisce/service/database_service.dart';
+import 'package:Reminisce/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -158,8 +160,16 @@ class _LoginPageState extends State<LoginPage> {
           // saving the values to our shared preferences
           await HelperFunctions.saveUserLoggedInStatus(true);
           await HelperFunctions.saveUserEmailSF(email);
+          print(snapshot.docs);
           await HelperFunctions.saveUserNameSF(snapshot.docs[0]['fullName']);
-          nextScreenReplace(context, const HomePage());
+
+          await HelperFunctions.saveProfilePhoto(snapshot.docs[0]['profilePic']);
+          bool? userInfo = await HelperFunctions.getUserInfoSavedSF();
+          if(userInfo!=null && userInfo!) {
+            nextScreenReplace(context,  DashboardView(index: 0, extras: []));
+          } else {
+            nextScreenReplace(context,  UserInformationScreen());
+          }
         } else {
           showSnackbar(context, Colors.red, value);
           setState(() {

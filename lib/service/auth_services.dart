@@ -1,5 +1,5 @@
-import 'package:reminisce/helper/helper_function.dart';
-import 'package:reminisce/service/database_service.dart';
+import 'package:Reminisce/helper/helper_function.dart';
+import 'package:Reminisce/service/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {

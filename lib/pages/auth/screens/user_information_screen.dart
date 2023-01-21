@@ -1,9 +1,16 @@
 import 'dart:io';
 
+import 'package:Reminisce/pages/Dashboard/DashboardView.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:reminisce/common/utils/utils.dart';
-import 'package:reminisce/common/widgets/custom_button.dart';
-import 'package:reminisce/service/database_service.dart';
+import 'package:Reminisce/common/utils/utils.dart';
+import 'package:Reminisce/common/widgets/custom_button.dart';
+import 'package:Reminisce/service/database_service.dart';
+
+import '../../../helper/helper_function.dart';
+import '../../../service/database_service.dart';
+import '../../../widgets/widgets.dart';
+import '../../home_page.dart';
 class UserInformationScreen extends StatefulWidget {
   UserInformationScreen({Key? key}) : super(key: key);
 
@@ -18,6 +25,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
   final TextEditingController dislikesController = TextEditingController();
   final TextEditingController emergencyContactController =TextEditingController();
   File? image;
+  bool isLoading =false;
   @override
   void dispose() {
     super.dispose();
@@ -31,6 +39,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
   void selectImage ()  async {
     image = await pickImageFromGallery(context);
     setState(() {
+
     });
   }
 
@@ -39,7 +48,12 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
+        child:
+        isLoading ? Center(
+          child: CircularProgressIndicator(
+              color: Theme.of(context).primaryColor),
+        ):
+        SingleChildScrollView(
             child: Center(
           child: Column(
             children: [
@@ -134,9 +148,9 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
               ),
 
               CustomButton(
-                text: "Save Information", 
-                onPressed: () => saveUserInfo(ageController.text, phoneController.text, likesController.text, 
-                dislikesController.text, emergencyContactController.text) 
+                text: "Save Information",
+                onPressed: () => saveUserInfo(ageController.text, phoneController.text, likesController.text,
+                dislikesController.text, emergencyContactController.text)
                 )
             ],
           ),
@@ -146,8 +160,16 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
   }
   void saveUserInfo (String age, String phone, String likes, String dislikes,
                 String emergencyContact) async {
-
-            await DatabaseService().savingPersonalData(age, phone);
-            
-  }
+    setState(() {
+      isLoading = true;
+    });
+   await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid).savingPersonalData(age, phone, likes, dislikes,emergencyContact, image)
+        .whenComplete(() async{
+          await HelperFunctions.saveUserInfo();
+      nextScreenReplace(context,  DashboardView(index: 0, extras: []));
+    }).onError((error, stackTrace) => showSnackbar(context, Colors.red, error));
+   setState(() {
+     isLoading = false;
+   });
+}
 }

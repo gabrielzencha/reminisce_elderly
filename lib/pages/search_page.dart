@@ -1,7 +1,7 @@
-import 'package:reminisce/helper/helper_function.dart';
-import 'package:reminisce/pages/chat_page.dart';
-import 'package:reminisce/service/database_service.dart';
-import 'package:reminisce/widgets/widgets.dart';
+import 'package:Reminisce/helper/helper_function.dart';
+import 'package:Reminisce/pages/chat_page.dart';
+import 'package:Reminisce/service/database_service.dart';
+import 'package:Reminisce/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

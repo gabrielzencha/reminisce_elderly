@@ -1,5 +1,5 @@
-import 'package:reminisce/pages/chat_page.dart';
-import 'package:reminisce/widgets/widgets.dart';
+import 'package:Reminisce/pages/chat_page.dart';
+import 'package:Reminisce/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class GroupTile extends StatefulWidget {

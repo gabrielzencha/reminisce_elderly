@@ -1,11 +1,13 @@
+import 'package:Reminisce/pages/Dashboard/DashboardView.dart';
+import 'package:Reminisce/pages/auth/screens/user_information_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:reminisce/helper/helper_function.dart';
-import 'package:reminisce/pages/home_page.dart';
-import 'package:reminisce/pages/onboarding/welcome.dart';
-import 'package:reminisce/router.dart';
-import 'package:reminisce/shared/constants.dart';
+import 'package:Reminisce/helper/helper_function.dart';
+import 'package:Reminisce/pages/home_page.dart';
+import 'package:Reminisce/pages/onboarding/welcome.dart';
+import 'package:Reminisce/router.dart';
+import 'package:Reminisce/shared/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,11 +34,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isSignedIn = false;
+  bool _isInfoSaved = false;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getUserLoggedInStatus();
+    getUserInfoStatus();
   }
 
   getUserLoggedInStatus() async {
@@ -48,7 +52,15 @@ class _MyAppState extends State<MyApp> {
       }
     });
   }
-
+  getUserInfoStatus() async {
+    await HelperFunctions.getUserInfoSavedSF().then((value) {
+      if (value != null) {
+        setState(() {
+          _isInfoSaved = value;
+        });
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -60,9 +72,12 @@ class _MyAppState extends State<MyApp> {
       home: Builder(builder: (BuildContext context) {
        
         
-        if (_isSignedIn) {
-          return const HomePage();
-        } else {
+        if (_isSignedIn && _isInfoSaved) {
+          return  DashboardView(index: 0, extras: []);
+        } else if(_isSignedIn && !_isInfoSaved){
+          return UserInformationScreen();
+        }
+        else {
           return const PolicyScreen();
         }
       }),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reminisce/pages/auth/screens/login_page.dart';
-import 'package:reminisce/widgets/error.dart';
+import 'package:Reminisce/pages/auth/screens/login_page.dart';
+import 'package:Reminisce/widgets/error.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {

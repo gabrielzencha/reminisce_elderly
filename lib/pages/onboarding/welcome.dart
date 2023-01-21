@@ -1,9 +1,10 @@
+import 'package:Reminisce/pages/auth/screens/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:reminisce/common/widgets/custom_button.dart';
-import 'package:reminisce/pages/auth/screens/user_information_screen.dart';
-import 'package:reminisce/pages/onboarding/onboarding.dart';
+import 'package:Reminisce/common/widgets/custom_button.dart';
+import 'package:Reminisce/pages/auth/screens/user_information_screen.dart';
 
-import 'package:reminisce/shared/constants.dart';
+
+import 'package:Reminisce/shared/constants.dart';
 
 
 
@@ -17,7 +18,7 @@ class PolicyScreen extends StatelessWidget {
         // MaterialPageRoute(
         //   builder: (context) =>  Onboarding(screenHeight: screenHeight),
         // )
-        MaterialPageRoute(builder: ((context) => UserInformationScreen()))
+        MaterialPageRoute(builder: ((context) => LoginPage()))
         
         );
   }

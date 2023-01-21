@@ -1,7 +1,7 @@
-import 'package:reminisce/pages/group_info.dart';
-import 'package:reminisce/service/database_service.dart';
-import 'package:reminisce/widgets/message_tile.dart';
-import 'package:reminisce/widgets/widgets.dart';
+import 'package:Reminisce/pages/group_info.dart';
+import 'package:Reminisce/service/database_service.dart';
+import 'package:Reminisce/widgets/message_tile.dart';
+import 'package:Reminisce/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 

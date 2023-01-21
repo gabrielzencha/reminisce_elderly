@@ -1,6 +1,6 @@
-import 'package:reminisce/pages/home_page.dart';
-import 'package:reminisce/service/database_service.dart';
-import 'package:reminisce/widgets/widgets.dart';
+import 'package:Reminisce/pages/home_page.dart';
+import 'package:Reminisce/service/database_service.dart';
+import 'package:Reminisce/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

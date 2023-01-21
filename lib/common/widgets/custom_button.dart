@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:reminisce/shared/constants.dart';
+import 'package:Reminisce/shared/constants.dart';
 
 
 class CustomButton extends StatelessWidget {

@@ -1,4 +1,4 @@
-name: reminisce
+name: Reminisce
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -29,13 +29,19 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  auto_size_text: ^3.0.0
   cloud_firestore: ^4.0.5
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.1.2
   firebase_core: ^2.2.0
+  firebase_storage: ^11.0.10
   flutter:
     sdk: flutter
+  flutter_easyloading: ^3.0.5
+  flutter_launcher_icons: ^0.11.0
+  google_fonts: ^3.0.1
   image_picker: ^0.8.6
+  move_to_background: ^1.0.2
   shared_preferences: ^2.0.15
 
 dev_dependencies:
@@ -48,7 +54,11 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo.png"
+  min_sdk_android: 21
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.

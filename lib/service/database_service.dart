@@ -1,5 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io';
 
+import 'package:Reminisce/helper/helper_function.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 class DatabaseService {
   final String? uid;
   DatabaseService({this.uid});
@@ -9,7 +12,7 @@ class DatabaseService {
       FirebaseFirestore.instance.collection("users");
   final CollectionReference groupCollection =
       FirebaseFirestore.instance.collection("groups");
-
+  final storageRef = FirebaseStorage.instance.ref();
   // saving the userdata
   Future savingUserData(String fullName, String email) async {
     return await userCollection.doc(uid).set({
@@ -21,12 +24,21 @@ class DatabaseService {
     });
   }
 
-  Future savingPersonalData(String age, String phone) async {
-    return await userCollection.doc(uid).set({
+  Future savingPersonalData(String age, String phone, String likes, String dislikes, String emergencyContact, File? image) async {
+    String photoURl = "";
+    if (image!=null){
+      photoURl = await storeFileToFirebasae("profile", image);
+    }
+    return await userCollection.doc(uid).update({
       "age": age,
       "phone": phone,
+      "profilePic": photoURl,
+      "likes": likes,
+      "dislikes": dislikes,
       "groups": [],
-      "profilePic": "",
+      "chats": [],
+      "walks": [],
+      "emergencyContact": emergencyContact,
       "uid": uid,
     });
   }
@@ -142,5 +154,17 @@ class DatabaseService {
       "recentMessageSender": chatMessageData['sender'],
       "recentMessageTime": chatMessageData['time'].toString(),
     });
+  }
+  Future<String> storeFileToFirebasae(String ref, File fileToSave) async {
+    final imageRef = storageRef.child(ref+"/"+uid.toString()+".jpg");print("uploading file");
+    UploadTask uploadTask = imageRef.putFile(fileToSave);
+    TaskSnapshot snap = await uploadTask;
+
+    String url = await snap.ref.getDownloadURL();
+    HelperFunctions.saveProfilePhoto(url);
+
+    return url;
+
+
   }
 }
