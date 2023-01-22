@@ -201,7 +201,7 @@ class _DashboardViewState extends State<DashboardView> {
                         child: Column(
                           children: <Widget>[
                             Icon(
-                              Icons.notifications,
+                              Icons.access_time_filled_rounded ,
                               color: currentTabIndex == 2 ? kBlue : kWhite,
                               size: 30,
                             ),
@@ -364,7 +364,7 @@ class _DashboardViewState extends State<DashboardView> {
     List<Widget> tabs = [
       HomePage(),
       HomePage(),
-      HomePage()
+      MemoriesView()
     ];
     return tabs;
   }

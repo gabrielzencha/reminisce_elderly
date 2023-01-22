@@ -160,10 +160,13 @@ class _LoginPageState extends State<LoginPage> {
           // saving the values to our shared preferences
           await HelperFunctions.saveUserLoggedInStatus(true);
           await HelperFunctions.saveUserEmailSF(email);
-          print(snapshot.docs);
+
           await HelperFunctions.saveUserNameSF(snapshot.docs[0]['fullName']);
 
           await HelperFunctions.saveProfilePhoto(snapshot.docs[0]['profilePic']);
+          if(snapshot.docs[0]['profilePic'].toString().isNotEmpty){
+            await HelperFunctions.saveUserInfo();
+          }
           bool? userInfo = await HelperFunctions.getUserInfoSavedSF();
           if(userInfo!=null && userInfo!) {
             nextScreenReplace(context,  DashboardView(index: 0, extras: []));
